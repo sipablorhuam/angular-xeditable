@@ -6,9 +6,9 @@ app.run(function(editableOptions) {
 
 app.controller('EditableRowCtrl', function($scope, $filter, $http) {
   $scope.users = [
-    {id: 1, name: 'awesome user1', company: 'Agile Solutions', group: 4, groupName: 'admin', document: '35.546.792-5'},
-    {id: 2, name: 'awesome user2', company: 'SAP', group: 3, groupName: 'vip', document: '35.546.792-5'},
-    {id: 3, name: 'awesome user3', company: 'Amazon', group: null, document: '35.546.792-5'}
+    {id: 1, name: 'awesome user1', company: 'Agile Solutions', group: 4, groupName: 'admin', document: '35.546.792-5', img: "https://scontent.fssa7-1.fna.fbcdn.net/v/t1.0-1/16196015_10154888128487744_6901111466535510271_n.png?_nc_cat=0&oh=0d72338b2a9162de88513558cdd919d3&oe=5BB77159"},
+    {id: 2, name: 'awesome user2', company: 'SAP', group: 3, groupName: 'vip', document: '35.546.792-5', img: "https://www.ienglishstatus.com/wp-content/uploads/2018/04/Anonymous-Whatsapp-profile-picture.jpg"},
+    {id: 3, name: 'awesome user3', company: 'Amazon', group: null, document: '35.546.792-5', img: "https://www.ienglishstatus.com/wp-content/uploads/2018/04/Sad-Profile-Pic-for-Whatsapp.png"}
   ]; 
   
   $scope.selectedUser = {id: 1, img: 'https://www.ienglishstatus.com/wp-content/uploads/2018/04/Anonymous-Whatsapp-profile-picture.jpg', name: 'awesome user1', company: 'Agile Solutions', group: 4, groupName: 'admin', document: '35.546.792-5'};
@@ -19,6 +19,11 @@ app.controller('EditableRowCtrl', function($scope, $filter, $http) {
     {value: 3, text: 'status3'},
     {value: 4, text: 'status4'}
   ]; 
+
+  $scope.visualize =  function(user){
+    console.log(user);
+    $scope.selectedUser = user;
+  };
 
   $scope.groups = [];
   $scope.loadGroups = function() {

@@ -27,17 +27,23 @@
           <form>
               <div class="form-group">
                 <label for="inputName">Nome</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Nome">
+                <input type="text" class="form-control" id="inputName" placeholder="Nome" ng-value="selectedUser.name">
               </div>
               <div class="form-group">
                 <label for="inputCompany">Empresa</label>
-                <input type="text" class="form-control" id="inputCompany" placeholder="Empresa">
+                <input type="text" class="form-control" id="inputCompany" placeholder="Empresa" ng-value="selectedUser.company">
               </div>
               <div class="form-group">
                   <label for="inputDocument">Documento</label>
-                  <input type="text" class="form-control" id="inputDocument" placeholder="Documento">
+                  <input type="text" class="form-control" id="inputDocument" placeholder="Documento" ng-value="selectedUser.document">
                 </div>
-              <button type="submit" class="btn btn-primary">Sign in</button>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-secondary">
+                  Editar
+                </button>
+              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                Cancelar
+              </button>
             </form>
       </div>
         
@@ -82,7 +88,7 @@
           </button>
         </form>
         <div class="buttons" ng-show="!rowform.$visible">
-          <button type="button" class="btn btn-primary" ng-click="rowform.$show()">Editar</button>
+          <button type="button" class="btn btn-primary" ng-click="visualize(user)">Ver</button>
           <button type="button" class="btn btn-danger" ng-click="removeUser($index)">Deletar</button>
         </div>  
       </td>
