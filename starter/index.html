@@ -14,55 +14,78 @@
     <script src="angular-xeditable/js/xeditable.js"></script>
     <!-- app.js -->
     <script src="app.js"></script>
+
+    <link href="style.css" rel="stylesheet">
   </head>
-  <body style="padding: 20px">
+  <body class="container" style="padding: 20px">
     <h1 style="margin-bottom: 20px">Angular-xeditable Starter Template</h1>
     <div ng-controller="EditableRowCtrl">
+      <div class="col-md-4 col-sm-12 profile-pic-area">
+          <img ng-src="{{selectedUser.img}}" class="profile-pic"/>
+      </div>
+      <div class="col-md-8 col-sm-12">
+          <form>
+              <div class="form-group">
+                <label for="inputAddress">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+              </div>
+              <div class="form-group">
+                <label for="inputAddress2">Address 2</label>
+                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+              </div>
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+      </div>
+        
   <table class="table table-bordered table-hover table-condensed">
     <tr style="font-weight: bold">
-      <td style="width:35%">Name</td>
-      <td style="width:20%">Status</td>
-      <td style="width:20%">Group</td>
+      <td style="width:35%">Nome</td>
+      <td style="width:20%">Empresa</td>
+      <td style="width:20%">Documento</td>
       <td style="width:25%">Edit</td>
     </tr>
     <tr ng-repeat="user in users">
       <td>
-        <!-- editable username (text with validation) -->
-        <span editable-text="user.name" e-name="name" e-form="rowform" onbeforesave="checkName($data, user.id)">
-          {{ user.name || 'empty' }}
+        <span editable-text="user.name" e-name="name" onbeforesave="checkName($data, user.id)">
+          {{ user.name || '--' }}
         </span>
       </td>
       <td>
-        <!-- editable status (select-local) -->
-        <span editable-select="user.status" e-name="status" e-form="rowform" e-ng-options="s.value as s.text for s in statuses">
-          {{ showStatus(user) }}
+        <span editable-text="user.company" e-name="company">
+            {{ user.company || '--' }}
         </span>
       </td>
       <td>
-        <!-- editable group (select-remote) -->
-        <span editable-select="user.group" e-name="group" onshow="loadGroups()" e-form="rowform" e-ng-options="g.id as g.text for g in groups">
-          {{ showGroup(user) }}
+        <span editable-text="user.document" e-name="document" onshow="loadGroups()">
+            {{ user.document || '--' }}
         </span>
       </td>
+      <!--
+        <td>
+        <span editable-text="user.group" e-name="group" onshow="loadGroups()">
+            {{ showGroup(user) }}
+          </span>
+        </td>
+      -->
       <td style="white-space: nowrap">
         <!-- form -->
         <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
           <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-            save
+            Salvar
           </button>
           <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
-            cancel
+            Cancelar
           </button>
         </form>
         <div class="buttons" ng-show="!rowform.$visible">
-          <button type="button" class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-          <button type="button" class="btn btn-danger" ng-click="removeUser($index)">del</button>
+          <button type="button" class="btn btn-primary" ng-click="rowform.$show()">Editar</button>
+          <button type="button" class="btn btn-danger" ng-click="removeUser($index)">Deletar</button>
         </div>  
       </td>
     </tr>
   </table>
 
-  <button type="button" class="btn btn-default" ng-click="addUser()">Add row</button>
+  <button type="button" class="btn btn-default" ng-click="addUser()">Adicionar Registro</button>
 </div>
   </body>
 </html>  

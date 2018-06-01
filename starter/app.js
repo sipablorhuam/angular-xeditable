@@ -6,10 +6,12 @@ app.run(function(editableOptions) {
 
 app.controller('EditableRowCtrl', function($scope, $filter, $http) {
   $scope.users = [
-    {id: 1, name: 'awesome user1', status: 2, group: 4, groupName: 'admin'},
-    {id: 2, name: 'awesome user2', status: undefined, group: 3, groupName: 'vip'},
-    {id: 3, name: 'awesome user3', status: 2, group: null}
+    {id: 1, name: 'awesome user1', company: 'Agile Solutions', group: 4, groupName: 'admin', document: '35.546.792-5'},
+    {id: 2, name: 'awesome user2', company: 'SAP', group: 3, groupName: 'vip', document: '35.546.792-5'},
+    {id: 3, name: 'awesome user3', company: 'Amazon', group: null, document: '35.546.792-5'}
   ]; 
+  
+  $scope.selectedUser = {id: 1, img: 'https://www.ienglishstatus.com/wp-content/uploads/2018/04/Anonymous-Whatsapp-profile-picture.jpg', name: 'awesome user1', company: 'Agile Solutions', group: 4, groupName: 'admin', document: '35.546.792-5'};
 
   $scope.statuses = [
     {value: 1, text: 'status1'},
@@ -69,4 +71,17 @@ app.controller('EditableRowCtrl', function($scope, $filter, $http) {
     };
     $scope.users.push($scope.inserted);
   };
+
+  $scope.addImage = function() {
+    //TODO edit this function
+    var f = document.getElementById('imageFile').files[0],
+        r = new FileReader();
+
+    r.onloadend = function(e) {
+      var data = e.target.result;
+      //send your binary data via $http or $resource or do anything else with it
+    }
+
+    r.readAsBinaryString(f);
+}
 });
